@@ -1,0 +1,173 @@
+swagger: '2.0'
+info:
+  title: Ringo API
+  version: "0.1"
+consumes:
+  - servicelication/json
+produces:
+  - servicelication/json
+# security:
+#   # enable OAuth protection for all REST endpoints
+#   # (only active if the TOKENINFO_URL environment variable is set)
+#   - oauth2: [uid]
+paths:
+  /users:
+    get:
+      tags: [Users]
+      operationId: ringo_service.api.search
+      summary: Get all users
+      parameters:
+        - name: limit
+          in: query
+          type: integer
+          minimum: 0
+          default: 100
+        - name: offset
+          in: query
+          type: integer
+          minimum: 0
+          default: 0
+        - name: search
+          in: query
+          type: string
+        - name: sort
+          in: query
+          type: string
+        - name: fields
+          in: query
+          type: string
+      responses:
+        200:
+          description: Return users
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/User'
+    post:
+      tags: [Users]
+      operationId: ringo_service.api.create
+      summary: Create a user
+      parameters:
+        - name: values
+          in: body
+          schema:
+            $ref: '#/definitions/User'
+      responses:
+        201:
+          description: New user created
+  /users/{item_id}:
+    get:
+      tags: [Users]
+      operationId: ringo_service.api.read
+      summary: Get a single user
+      parameters:
+        - $ref: '#/parameters/item_id'
+      responses:
+        200:
+          description: Return user
+          schema:
+            $ref: '#/definitions/User'
+        404:
+          description: User does not exist
+    put:
+      tags: [Users]
+      operationId: ringo_service.api.update
+      summary: Update a user
+      parameters:
+        - $ref: '#/parameters/item_id'
+        - name: values
+          in: body
+          schema:
+            $ref: '#/definitions/User'
+      responses:
+        200:
+          description: User updated
+    delete:
+      tags: [Users]
+      operationId: ringo_service.api.delete
+      summary: Remove a user
+      parameters:
+        - $ref: '#/parameters/item_id'
+      responses:
+        204:
+          description: User was deleted
+        404:
+          description: User does not exist
+  /users/{item_id}/password:
+    post:
+      tags: [Users]
+      operationId: ringo_service.api.generic
+      summary: Get a single user
+      parameters:
+        - $ref: '#/parameters/item_id'
+        - name: values
+          in: body
+          description: 'Password of the user'
+          schema:
+            type: object
+            properties:
+                password:
+                  type: string
+      responses:
+        200:
+          description: Return user password
+          schema:
+            type: object
+            properties:
+                password:
+                  type: string
+        404:
+          description: User does not exist
+parameters:
+  item_id:
+    name: item_id
+    description: User's Unique identifier
+    in: path
+    type: integer
+    required: true
+definitions:
+  User:
+    type: object
+    required:
+      - id
+      - name
+      - password
+    properties:
+      id:
+        type: integer
+        description: No description available
+        example: 123
+        readOnly: false
+      uuid:
+        type: string
+        description: No description available
+        example: Yeah! I'm a string
+        readOnly: false
+      created:
+        type: string
+        description: No description available
+        example: 2017-10-09T17:22:13.126970
+        readOnly: false
+      updated:
+        type: string
+        description: No description available
+        example: 2017-10-09T17:22:13.127004
+        readOnly: false
+      name:
+        type: string
+        description: No description available
+        example: Yeah! I'm a string
+        readOnly: false
+      password:
+        type: string
+        description: No description available
+        example: Yeah! I'm a string
+        readOnly: false
+
+securityDefinitions:
+  oauth2:
+    type: oauth2
+    flow: implicit
+    authorizationUrl: https://example.com/oauth2/dialog
+    scopes:
+      uid: Unique identifier of the user accessing the service.

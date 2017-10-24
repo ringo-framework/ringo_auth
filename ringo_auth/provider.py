@@ -1,10 +1,20 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from datetime import datetime, timedelta
+from flask import session
 from flask_oauthlib.provider import OAuth2Provider as BaseOAuth2Provider
 
 from ringo_auth.storage import db
-from ringo_auth.model import Client, Grant, Token, current_user
+from ringo_auth.model.client import Client
+from ringo_auth.model.token import Grant, Token
+from ringo_auth.model.user import User
+
+
+def current_user():
+    if 'id' in session:
+        uid = session['id']
+        return User.query.get(uid)
+    return None
 
 
 class OAuth2Provider(BaseOAuth2Provider):
