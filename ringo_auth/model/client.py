@@ -8,6 +8,7 @@ class Client(Protocol, BaseItem, Base):
     __tablename__ = 'clients'
     client_id = sa.Column(sa.String(40), nullable=False)
     client_secret = sa.Column(sa.String(55), nullable=False)
+    name = sa.Column(sa.String())
 
     user_id = sa.Column(sa.ForeignKey('users.id'))
     user = sa.orm.relationship('User')
