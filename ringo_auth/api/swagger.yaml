@@ -11,6 +11,40 @@ produces:
 #   # (only active if the TOKENINFO_URL environment variable is set)
 #   - oauth2: [uid]
 paths:
+  /login:
+    post:
+      tags: [Auth]
+      operationId: ringo_auth.api.auth.login
+      summary: Login
+      parameters:
+        - name: values
+          in: body
+          schema:
+            $ref: '#/definitions/LoginCredentials'
+      responses:
+        200:
+          description: JWT token.
+          schema:
+              type: string
+        403:
+          description: User not authenticated
+  /clients:
+    post:
+      tags: [Auth]
+      operationId: ringo_service.api.createx
+      summary: Create a new Client
+      parameters:
+        - name: values
+          in: body
+          schema:
+            $ref: '#/definitions/RegisterClient'
+      responses:
+        200:
+          description: Client data to be used in client for authorisation.
+          schema:
+            $ref: '#/definitions/Client'
+        403:
+          description: User not authenticated
   /users:
     get:
       tags: [Users]
@@ -163,6 +197,67 @@ definitions:
         description: No description available
         example: Yeah! I'm a string
         readOnly: false
+  Client:
+    type: object
+    required:
+      - client_id
+      - client_secret
+    properties:
+      client_id:
+        type: string
+        description: Client id
+        example: KTkuiJZsvitxsJdmym7BNlBqRNuId41IIdxQ4iN6
+        readOnly: true
+      client_secret:
+        type: string
+        description: Client secret
+        example: Qi44fiuyJMf5mHsO7RgoifmfhpUTecCHzUVngCrgHO2Ek2dTqJ
+        readOnly: true
+  RegisterClient:
+    type: object
+    description: Data of the new client including username and password of the user which registers the new client
+    required:
+      - username
+      - password
+      - name
+      - scopes
+      - redirect_uris
+    properties:
+      username:
+        type: string
+        description: Username to login
+        example: User1
+      password:
+        type: string
+        description: Password to login
+        example: Password
+      name:
+        type: string
+        description: Name/Description of the client
+        example: Foo Microservice
+      scopes:
+        type: string
+        description: Space separated list of scopes
+        example: foo bar
+      redirect_uris:
+        type: string
+        description: Space separated list of uris to complete authorisation
+        example: http://localhost:8000/authorize
+  LoginCredentials:
+    type: object
+    description: Data of the new client including username and password of the user which registers the new client
+    required:
+      - client_id
+      - client_secret
+    properties:
+      client_id:
+        type: string
+        description: ID of the client
+        example: KTkuiJZsvitxsJdmym7BNlBqRNuId41IIdxQ4iN6
+      client_secret:
+        type: string
+        description: Secret of the client.
+        example: Qi44fiuyJMf5mHsO7RgoifmfhpUTecCHzUVngCrgHO2Ek2dTqJ
 
 securityDefinitions:
   oauth2:
