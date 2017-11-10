@@ -107,7 +107,7 @@ package_directory = os.path.dirname(os.path.abspath(__file__))
 
 def run():
     init_storage()
-    start_service(os.path.abspath(os.path.join("ringo_auth", "api", "swagger.yaml")), ringo_auth)
+    start_service(os.path.abspath(os.path.join(package_directory, "api", "swagger.yaml")), ringo_auth)
 
 
 if __name__ == "__main__":
