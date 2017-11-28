@@ -2,6 +2,6 @@
 Usage
 =====
 
-To use Ringo OAuth2 authorisation server in a project::
+To use Tedega OAuth2 authorisation server in a project::
 
-    import ringo_auth
+    import tedega_auth

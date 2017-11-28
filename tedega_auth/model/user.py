@@ -2,10 +2,10 @@
 # -*- coding: utf-8 -*-
 """Modul for Users"""
 import sqlalchemy as sa
-from ringo_storage import RDBMSStorageBase as Base
-from ringo_core.lib.security import encrypt_password, generate_password
-from ringo_core.model.base import BaseItem, BaseFactory
-from ringo_core.model.mixins import Protocol
+from tedega_storage import RDBMSStorageBase as Base
+from tedega_core.lib.security import encrypt_password, generate_password
+from tedega_core.model.base import BaseItem, BaseFactory
+from tedega_core.model.mixins import Protocol
 
 
 class UserFactory(BaseFactory):

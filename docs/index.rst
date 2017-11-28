@@ -1,4 +1,4 @@
-Welcome to Ringo OAuth2 authorisation server's documentation!
+Welcome to Tedega OAuth2 authorisation server's documentation!
 ======================================
 
 Contents:

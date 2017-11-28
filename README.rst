@@ -1,20 +1,20 @@
 ===============================
-Ringo OAuth2 authorisation server
+Tedega OAuth2 authorisation server
 ===============================
 
 
-.. image:: https://img.shields.io/pypi/v/ringo_auth.svg
-        :target: https://pypi.python.org/pypi/ringo_auth
+.. image:: https://img.shields.io/pypi/v/tedega_auth.svg
+        :target: https://pypi.python.org/pypi/tedega_auth
 
-.. image:: https://img.shields.io/travis/toirl/ringo_auth.svg
-        :target: https://travis-ci.org/toirl/ringo_auth
+.. image:: https://img.shields.io/travis/toirl/tedega_auth.svg
+        :target: https://travis-ci.org/toirl/tedega_auth
 
-.. image:: https://readthedocs.org/projects/ringo-auth/badge/?version=latest
-        :target: https://ringo-auth.readthedocs.io/en/latest/?badge=latest
+.. image:: https://readthedocs.org/projects/tedega-auth/badge/?version=latest
+        :target: https://tedega-auth.readthedocs.io/en/latest/?badge=latest
         :alt: Documentation Status
 
-.. image:: https://pyup.io/repos/github/toirl/ringo_auth/shield.svg
-     :target: https://pyup.io/repos/github/toirl/ringo_auth/
+.. image:: https://pyup.io/repos/github/toirl/tedega_auth/shield.svg
+     :target: https://pyup.io/repos/github/toirl/tedega_auth/
      :alt: Updates
 
 
@@ -22,7 +22,7 @@ Python Boilerplate contains all the boilerplate you need to create a Python pack
 
 
 * Free software: MIT license
-* Documentation: https://ringo-auth.readthedocs.io.
+* Documentation: https://tedega-auth.readthedocs.io.
 
 
 Features

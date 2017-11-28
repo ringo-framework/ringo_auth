@@ -1,4 +1,4 @@
-* Ringo OAuth2 authorisation server version:
+* Tedega OAuth2 authorisation server version:
 * Python version:
 * Operating System:
 

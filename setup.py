@@ -19,23 +19,23 @@ test_requirements = [
 ]
 
 setup(
-    name='ringo_auth',
+    name='tedega_auth',
     version='0.1.0',
     description="Python Boilerplate contains all the boilerplate you need to create a Python package.",
     long_description=readme + '\n\n' + history,
     author="Torsten Irländer",
     author_email='torsten.irlaender@googlemail.com',
-    url='https://github.com/toirl/ringo_auth',
+    url='https://github.com/toirl/tedega_auth',
     packages=[
-        'ringo_auth',
+        'tedega_auth',
     ],
-    package_dir={'ringo_auth':
-                 'ringo_auth'},
+    package_dir={'tedega_auth':
+                 'tedega_auth'},
     include_package_data=True,
     install_requires=requirements,
     license="MIT license",
     zip_safe=False,
-    keywords='ringo_auth',
+    keywords='tedega_auth',
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
         'Intended Audience :: Developers',
@@ -52,6 +52,6 @@ setup(
     test_suite='tests',
     tests_require=test_requirements,
     entry_points={
-        'console_scripts': ['ringo_auth=ringo_auth.server:run']
+        'console_scripts': ['tedega_auth=ringo_auth.server:run']
     }
 )

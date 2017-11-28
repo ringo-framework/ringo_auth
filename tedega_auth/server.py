@@ -5,9 +5,9 @@
 # from flask import session, request
 # from flask import render_template, redirect, jsonify
 # from werkzeug.security import gen_salt
-# from ringo_auth.storage import db
-# from ringo_auth.provider import OAuth2Provider
-# from ringo_auth.model import User, Client, current_user
+# from tedega_auth.storage import db
+# from tedega_auth.provider import OAuth2Provider
+# from tedega_auth.model import User, Client, current_user
 #
 #
 # app = Flask(__name__, template_folder='templates')
@@ -97,17 +97,17 @@
 
 # -*- coding: utf-8 -*-
 import os
-from ringo_service import start_service
-from ringo_storage import init_storage
-import ringo_auth.api
-import ringo_auth.model
+from tedega_service import start_service
+from tedega_storage import init_storage
+import tedega_auth.api
+import tedega_auth.model
 
 package_directory = os.path.dirname(os.path.abspath(__file__))
 
 
 def run():
     init_storage()
-    start_service(os.path.abspath(os.path.join(package_directory, "api", "swagger.yaml")), ringo_auth)
+    start_service(os.path.abspath(os.path.join(package_directory, "api", "swagger.yaml")), tedega_auth)
 
 
 if __name__ == "__main__":

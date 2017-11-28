@@ -2,16 +2,16 @@
 # -*- coding: utf-8 -*-
 
 """
-test_ringo_auth
+test_tedega_auth
 ----------------------------------
 
-Tests for `ringo_auth` module.
+Tests for `tedega_auth` module.
 """
 
 import pytest
 
 
-from ringo_auth import server
+from tedega_auth import server
 
 
 @pytest.fixture

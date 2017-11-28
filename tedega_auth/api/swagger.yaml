@@ -1,6 +1,6 @@
 swagger: '2.0'
 info:
-  title: Ringo API
+  title: Tedega API
   version: "0.1"
 consumes:
   - servicelication/json
@@ -14,7 +14,7 @@ paths:
   /login:
     post:
       tags: [Auth]
-      operationId: ringo_auth.api.auth.login
+      operationId: tedega_auth.api.auth.login
       summary: Login
       parameters:
         - name: values
@@ -31,7 +31,7 @@ paths:
   /clients:
     post:
       tags: [Auth]
-      operationId: ringo_service.api.createx
+      operationId: tedega_service.api.createx
       summary: Create a new Client
       parameters:
         - name: values
@@ -48,7 +48,7 @@ paths:
   /users:
     get:
       tags: [Users]
-      operationId: ringo_service.api.search
+      operationId: tedega_service.api.search
       summary: Get all users
       parameters:
         - name: limit
@@ -79,7 +79,7 @@ paths:
               $ref: '#/definitions/User'
     post:
       tags: [Users]
-      operationId: ringo_service.api.create
+      operationId: tedega_service.api.create
       summary: Create a user
       parameters:
         - name: values
@@ -92,7 +92,7 @@ paths:
   /users/{item_id}:
     get:
       tags: [Users]
-      operationId: ringo_service.api.read
+      operationId: tedega_service.api.read
       summary: Get a single user
       parameters:
         - $ref: '#/parameters/item_id'
@@ -105,7 +105,7 @@ paths:
           description: User does not exist
     put:
       tags: [Users]
-      operationId: ringo_service.api.update
+      operationId: tedega_service.api.update
       summary: Update a user
       parameters:
         - $ref: '#/parameters/item_id'
@@ -118,7 +118,7 @@ paths:
           description: User updated
     delete:
       tags: [Users]
-      operationId: ringo_service.api.delete
+      operationId: tedega_service.api.delete
       summary: Remove a user
       parameters:
         - $ref: '#/parameters/item_id'
@@ -130,7 +130,7 @@ paths:
   /users/{item_id}/password:
     post:
       tags: [Users]
-      operationId: ringo_service.api.generic
+      operationId: tedega_service.api.generic
       summary: Get a single user
       parameters:
         - $ref: '#/parameters/item_id'

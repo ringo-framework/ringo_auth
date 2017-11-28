@@ -2,11 +2,11 @@
 # -*- coding: utf-8 -*-
 
 import jwt
-from ringo_service import config_service_endpoint, AuthError
-from ringo_storage import get_storage
-from ringo_core.lib.security import verify_password, generate_password
-from ringo_auth.model.user import User
-from ringo_auth.model.client import Client
+from tedega_service import config_service_endpoint, AuthError
+from tedega_storage import get_storage
+from tedega_core.lib.security import verify_password, generate_password
+from tedega_auth.model.user import User
+from tedega_auth.model.client import Client
 
 
 @config_service_endpoint(path="/login", method="POST")
