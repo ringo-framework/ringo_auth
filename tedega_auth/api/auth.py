@@ -2,14 +2,14 @@
 # -*- coding: utf-8 -*-
 
 import jwt
-from tedega_service import config_service_endpoint, AuthError
-from tedega_storage import get_storage
-from tedega_core.lib.security import verify_password, generate_password
+from tedega_view import config_view_endpoint, AuthError
+from tedega_storage.rdbms import get_storage
+from tedega_share.lib.security import verify_password, generate_password
 from tedega_auth.model.user import User
 from tedega_auth.model.client import Client
 
 
-@config_service_endpoint(path="/login", method="POST")
+@config_view_endpoint(path="/login", method="POST", auth=None)
 def login(values):
     client_id = values["client_id"]
     client_secret = values["client_secret"]
@@ -27,7 +27,7 @@ def login(values):
     return encoded
 
 
-@config_service_endpoint(path="/clients", method="POST")
+@config_view_endpoint(path="/clients", method="POST", auth=None)
 def add_client(values):
     """Registers a new client. To register a new client the request must
     be autheticated by providing the username and password of the

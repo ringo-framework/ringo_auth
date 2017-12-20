@@ -1,7 +1,7 @@
 import sqlalchemy as sa
-from tedega_storage import RDBMSStorageBase as Base
-from tedega_core.model.base import BaseItem
-from tedega_core.model.mixins import Protocol
+from tedega_storage.rdbms import RDBMSStorageBase as Base
+from tedega_storage.rdbms.base import BaseItem
+from tedega_storage.rdbms.mixins import Protocol
 
 
 class Client(Protocol, BaseItem, Base):

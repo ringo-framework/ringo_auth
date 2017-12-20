@@ -3,23 +3,23 @@
 
 """
 Public API of the user model"""
-from tedega_service import config_service_endpoint
-from tedega_storage import get_storage
-from tedega_core.api.crud import (
-    _search,
-    _create,
-    _read,
-    _update,
-    _delete
+from tedega_view import config_view_endpoint
+from tedega_storage.rdbms import get_storage
+from tedega_storage.rdbms.crud import (
+    search,
+    create,
+    read,
+    update,
+    delete
 )
 from tedega_auth.model.user import User
 
 
-@config_service_endpoint(path="/users", method="GET")
-def search(limit=100, offset=0, search="", sort="", fields=""):
+@config_view_endpoint(path="/users", method="GET", auth=None)
+def search_(limit=100, offset=0, searchstr="", sort="", fields=""):
     """Loads all users.
 
-    .. seealso:: Methods :func:`tedega_core.api.crud._search`
+    .. seealso:: Methods :func:`tedega_core.api.crud.search`
 
     :limit: Limit number of result to N entries.
     :offset: Return entries with an offset of N.
@@ -38,16 +38,16 @@ def search(limit=100, offset=0, search="", sort="", fields=""):
     else:
         fields = None
     with get_storage() as storage:
-        users = _search(storage, User, limit, offset, search, sort)
+        users = search(storage, User, limit, offset, searchstr, sort)
         users = [user.get_values(fields) for user in users]
     return users
 
 
-@config_service_endpoint(path="/users", method="POST")
-def create(name, password):
+@config_view_endpoint(path="/users", method="POST", auth=None)
+def create_(name, password):
     """Creates a new user with the given `name` and `password`.
 
-    .. seealso:: Methods :func:`tedega_core.api.crud._create`
+    .. seealso:: Methods :func:`tedega_core.api.crud.create`
 
     :name: Name of the new user
     :password: Password (unencrypted) of the new user
@@ -59,16 +59,16 @@ def create(name, password):
     'foo1'
     """
     with get_storage() as storage:
-        user = _create(storage, User, dict(name=name, password=password))
+        user = create(storage, User, dict(name=name, password=password))
         user = user.get_values()
     return user
 
 
-@config_service_endpoint(path="/users/{item_id}", method="GET")
-def read(item_id):
+@config_view_endpoint(path="/users/{item_id}", method="GET", auth=None)
+def read_(item_id):
     """Read (load) a existing user from the database.
 
-    .. seealso:: Methods :func:`tedega_core.api.crud._read`
+    .. seealso:: Methods :func:`tedega_core.api.crud.read`
 
     :item_id: ID of the user to load.
     :returns: Dictionary with values of the user
@@ -83,16 +83,16 @@ def read(item_id):
     'foo2'
     """
     with get_storage() as storage:
-        user = _read(storage, User, item_id)
+        user = read(storage, User, item_id)
         user = user.get_values()
     return user
 
 
-@config_service_endpoint(path="/users/{item_id}", method="PUT")
-def update(item_id, values):
+@config_view_endpoint(path="/users/{item_id}", method="PUT", auth=None)
+def update_(item_id, values):
     """Update a user with the given values in the database.
 
-    .. seealso:: Methods :func:`tedega_core.api.crud._update`
+    .. seealso:: Methods :func:`tedega_core.api.crud.update`
 
     :item_id: ID of the user to update
     :values: Dictionary of values
@@ -108,16 +108,16 @@ def update(item_id, values):
     'baz'
     """
     with get_storage() as storage:
-        user = _update(storage, User, item_id, values)
+        user = update(storage, User, item_id, values)
         user = user.get_values()
     return user
 
 
-@config_service_endpoint(path="/users/{item_id}", method="DELETE")
-def delete(item_id):
+@config_view_endpoint(path="/users/{item_id}", method="DELETE", auth=None)
+def delete_(item_id):
     """Deletes a user from the database.
 
-    .. seealso:: Methods :func:`tedega_core.api.crud._delete`
+    .. seealso:: Methods :func:`tedega_core.api.crud.delete`
 
     :item_id: ID of the user to update
 
@@ -133,10 +133,10 @@ def delete(item_id):
     sqlalchemy.orm.exc.NoResultFound: No row was found for one()
     """
     with get_storage() as storage:
-        return _delete(storage, User, item_id)
+        return delete(storage, User, item_id)
 
 
-@config_service_endpoint(path="/users/{item_id}/password", method="POST")
+@config_view_endpoint(path="/users/{item_id}/password", method="POST", auth=None)
 def reset_password(item_id, password=None):
     """Will reset the password of the user.
 
@@ -160,6 +160,6 @@ def reset_password(item_id, password=None):
     True
     """
     with get_storage() as storage:
-        user = _read(storage, User, item_id)
+        user = read(storage, User, item_id)
         new_password = user.reset_password(password)
     return new_password
