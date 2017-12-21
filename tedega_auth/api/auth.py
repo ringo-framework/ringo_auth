@@ -24,7 +24,7 @@ def login(values):
             raise AuthError("Client can not be authenticated")
 
     encoded = jwt.encode({'some': 'payload'}, 'secret', algorithm='HS256')
-    return encoded
+    return encoded.decode('utf-8')
 
 
 @config_view_endpoint(path="/clients", method="POST", auth=None)
