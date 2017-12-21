@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import pytest
-from tedega_core.lib.security import generate_password
-from tedega_storage import init_storage, get_storage
+from tedega_share.lib.security import generate_password
+from tedega_storage.rdbms import init_storage, get_storage
+import tedega_auth.model.user
 
 # Initialise a SQLite Database for doctests. Doctests can not use the
 # fixtures and contexts of py.test. So default sqlite db in memory is

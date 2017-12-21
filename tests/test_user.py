@@ -12,7 +12,7 @@ import pytest
 
 
 def test_not_found():
-    from tedega_service.exceptions import NotFound
+    from tedega_view.exceptions import NotFound
     import tedega_auth.api.user
     with pytest.raises(NotFound):
         tedega_auth.api.user.read(9999)
@@ -29,7 +29,7 @@ def test_search(randomstring):
 
 def test_search_filters(randomstring):
     import tedega_auth.api.user
-    from tedega_service.exceptions import ClientError
+    from tedega_view.exceptions import ClientError
     name = randomstring(8)
     tedega_auth.api.user.create(name=name, password="password")
 
@@ -90,7 +90,7 @@ def test_read(randomstring):
 
 
 def test_update(randomstring):
-    from tedega_service.exceptions import NotFound
+    from tedega_view.exceptions import NotFound
     import tedega_auth.api.user
     name = randomstring(8)
     user = tedega_auth.api.user.create(name=name, password="password")
@@ -104,7 +104,7 @@ def test_update(randomstring):
 
 
 def test_delete(randomstring):
-    from tedega_service.exceptions import NotFound
+    from tedega_view.exceptions import NotFound
     import tedega_auth.api.user
     name = randomstring(8)
     user = tedega_auth.api.user.create(name=name, password="password")
