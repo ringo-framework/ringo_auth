@@ -2,9 +2,16 @@
 # -*- coding: utf-8 -*-
 import os
 from tedega_view import create_application
-from tedega_storage.rdbms import init_storage
+from tedega_storage.rdbms import (
+    init_storage,
+    get_storage
+)
+from tedega_storage.rdbms.crud import (
+    create as _create,
+)
 from tedega_share import (
     init_logger,
+    get_logger,
     monitor_connectivity,
     monitor_system
 )
@@ -25,6 +32,12 @@ def build_app(servicename):
                    (monitor_connectivity, [("www.google.com", 80)]),
                    (monitor_system, 10)]
     application = create_application(servicename, run_on_init=run_on_init)
+    log = get_logger()
+    with get_storage() as storage:
+        user = _create(storage, tedega_auth.model.user.User, dict(name="admin", password="secret"))
+        storage.create(user)
+        log.info("Create default user 'admin' with password 'secret'")
+    
     return application
 
 if __name__ == "__main__":
